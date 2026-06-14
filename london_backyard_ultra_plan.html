@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>London Backyard Ultra 2026 — 24hr+ Training Plan</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f0f0f; color: #e8e8e8; padding: 40px 20px; line-height: 1.6; }
+.container { max-width: 1100px; margin: 0 auto; }
+h1 { font-size: 2.4rem; font-weight: 700; margin-bottom: 8px; color: #fff; }
+.subtitle { font-size: 1.1rem; color: #888; margin-bottom: 40px; }
+.meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 50px; }
+.meta-card { background: #1a1a1a; border-radius: 12px; padding: 20px; border: 1px solid #2a2a2a; }
+.meta-card .label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 4px; }
+.meta-card .value { font-size: 1.3rem; font-weight: 600; color: #fff; }
+.meta-card .value.highlight { color: #ff8c42; }
+
+.info-section { margin-bottom: 50px; }
+.info-section h2 { font-size: 1.4rem; margin-bottom: 16px; color: #fff; }
+.info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+.info-card { background: #1a1a1a; border-radius: 12px; padding: 20px; border: 1px solid #2a2a2a; }
+.info-card h3 { font-size: 0.95rem; color: #fff; margin-bottom: 8px; }
+.info-card p { font-size: 0.8rem; color: #888; line-height: 1.6; }
+.info-card ul { font-size: 0.8rem; color: #888; line-height: 1.8; padding-left: 16px; }
+
+.zones { margin-bottom: 50px; }
+.zones h2 { font-size: 1.4rem; margin-bottom: 16px; color: #fff; }
+.zone-row { display: flex; align-items: center; padding: 12px 16px; border-radius: 8px; margin-bottom: 6px; }
+.zone-row .zone-label { width: 80px; font-weight: 700; font-size: 0.9rem; }
+.zone-row .zone-name { flex: 1; font-size: 0.9rem; color: #aaa; }
+.zone-row .zone-pace { font-weight: 600; font-size: 0.95rem; font-family: 'SF Mono', monospace; }
+.z-easy { background: #1a2a1a; } .z-easy .zone-label { color: #4caf50; }
+.z-steady { background: #1a2a2a; } .z-steady .zone-label { color: #4ecdc4; }
+.z-loop { background: #2a2a1a; } .z-loop .zone-label { color: #ff8c42; }
+.z-tempo { background: #2a1a1a; } .z-tempo .zone-label { color: #ff6b6b; }
+
+.week-structure { margin-bottom: 50px; }
+.week-structure h2 { font-size: 1.4rem; margin-bottom: 16px; color: #fff; }
+.day-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+.day-cell { background: #1a1a1a; border-radius: 10px; padding: 14px 10px; text-align: center; border: 1px solid #2a2a2a; }
+.day-cell .day-name { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 6px; }
+.day-cell .day-activity { font-size: 0.72rem; color: #ccc; font-weight: 500; }
+.day-cell.run { border-color: #ff8c42; }
+.day-cell.rest { opacity: 0.5; }
+.day-cell.gym { border-color: #c44dff; }
+.day-cell.long { border-color: #4ecdc4; }
+
+.phase { margin-bottom: 60px; }
+.phase-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 2px solid #2a2a2a; }
+.phase-header h2 { font-size: 1.5rem; color: #fff; }
+.phase-header .phase-tag { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; padding: 4px 10px; border-radius: 20px; font-weight: 600; }
+.tag-recover { background: #1a3a2a; color: #4caf50; }
+.tag-build { background: #2a2a1a; color: #ff8c42; }
+.tag-specific { background: #3a1a1a; color: #ff6b6b; }
+.tag-taper { background: #2a1a3a; color: #c44dff; }
+
+.week { background: #1a1a1a; border-radius: 16px; padding: 24px; margin-bottom: 20px; border: 1px solid #2a2a2a; }
+.week-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.week-title { font-size: 1.1rem; font-weight: 700; color: #fff; }
+.week-vol { font-size: 0.9rem; font-weight: 600; color: #ff8c42; background: #2a1f1a; padding: 4px 12px; border-radius: 20px; }
+.week-vol.recovery { color: #4caf50; background: #1a2a1a; }
+.week-focus { font-size: 0.8rem; color: #888; margin-bottom: 16px; font-style: italic; }
+
+.sessions { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.session { background: #222; border-radius: 10px; padding: 16px; border-left: 3px solid #333; }
+.session.easy { border-left-color: #4caf50; }
+.session.steady { border-left-color: #4ecdc4; }
+.session.loop { border-left-color: #ff8c42; }
+.session.long { border-left-color: #4ecdc4; }
+.session.double { border-left-color: #ffd93d; }
+.session.gym { border-left-color: #c44dff; }
+.session.rest { border-left-color: #444; opacity: 0.7; }
+.session.sim { border-left-color: #ff6b6b; background: #2a1a1a; }
+.session.back2back { border-left-color: #ff8c42; }
+.session .day { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 4px; }
+.session .type { font-size: 0.85rem; font-weight: 600; color: #fff; margin-bottom: 8px; }
+.session .detail { font-size: 0.8rem; color: #aaa; line-height: 1.5; }
+.session .detail strong { color: #ddd; }
+
+.race-day { background: linear-gradient(135deg, #2a1f1a, #1a1510); border: 2px solid #ff8c42; border-radius: 16px; padding: 30px; margin-bottom: 50px; }
+.race-day h2 { font-size: 1.4rem; color: #ff8c42; margin-bottom: 16px; }
+.race-day .strategy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.race-day .strategy-card { background: #1a1a1a; border-radius: 10px; padding: 16px; }
+.race-day .strategy-card h3 { font-size: 0.9rem; color: #ff8c42; margin-bottom: 8px; }
+.race-day .strategy-card p { font-size: 0.8rem; color: #aaa; line-height: 1.5; }
+.race-day .strategy-card ul { font-size: 0.8rem; color: #aaa; line-height: 1.8; padding-left: 16px; }
+
+.fueling { margin-bottom: 50px; }
+.fueling h2 { font-size: 1.4rem; margin-bottom: 16px; color: #fff; }
+.fuel-table { width: 100%; border-collapse: collapse; background: #1a1a1a; border-radius: 12px; overflow: hidden; }
+.fuel-table th { text-align: left; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #666; padding: 12px 16px; border-bottom: 1px solid #2a2a2a; background: #222; }
+.fuel-table td { padding: 12px 16px; font-size: 0.85rem; border-bottom: 1px solid #1a1a1a; }
+.fuel-table tr:last-child td { border-bottom: none; }
+
+.sim-section { background: linear-gradient(135deg, #1a1a2a, #0f0f1a); border: 2px solid #c44dff; border-radius: 16px; padding: 30px; margin-bottom: 50px; }
+.sim-section h2 { font-size: 1.4rem; color: #c44dff; margin-bottom: 16px; }
+.sim-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+.sim-card { background: #1a1a1a; border-radius: 10px; padding: 20px; }
+.sim-card h3 { font-size: 1rem; color: #c44dff; margin-bottom: 10px; }
+.sim-card p { font-size: 0.8rem; color: #aaa; line-height: 1.6; margin-bottom: 8px; }
+.sim-card ul { font-size: 0.8rem; color: #aaa; line-height: 1.8; padding-left: 16px; }
+
+@media (max-width: 768px) {
+  .day-grid { grid-template-columns: repeat(4, 1fr); }
+  .sessions { grid-template-columns: 1fr; }
+  h1 { font-size: 1.8rem; }
+  .meta-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>London Backyard Ultra 2026</h1>
+<p class="subtitle">8-Week 24hr+ Training Plan — Jake Breeze</p>
+
+<div class="meta-grid">
+  <div class="meta-card"><div class="label">Race Date</div><div class="value">29 Aug 2026</div></div>
+  <div class="meta-card"><div class="label">Goal</div><div class="value highlight">24+ Hours</div></div>
+  <div class="meta-card"><div class="label">Loop Distance</div><div class="value">6.706km</div></div>
+  <div class="meta-card"><div class="label">Target Loop Time</div><div class="value highlight">45–50 min</div></div>
+  <div class="meta-card"><div class="label">Loop Pace</div><div class="value">6:43–7:27/km</div></div>
+  <div class="meta-card"><div class="label">Rest Per Loop</div><div class="value">10–15 min</div></div>
+  <div class="meta-card"><div class="label">Peak Volume</div><div class="value">90–100km/wk</div></div>
+  <div class="meta-card"><div class="label">Runs/Week</div><div class="value">5 (+doubles)</div></div>
+</div>
+
+<!-- TRAINING ZONES -->
+<div class="zones">
+<h2>Training Effort Zones</h2>
+<div class="zone-row z-easy"><span class="zone-label">Easy</span><span class="zone-name">Recovery / Conversational</span><span class="zone-pace">5:30–6:00/km</span></div>
+<div class="zone-row z-steady"><span class="zone-label">Steady</span><span class="zone-name">Aerobic Endurance</span><span class="zone-pace">5:00–5:30/km</span></div>
+<div class="zone-row z-loop"><span class="zone-label">Loop</span><span class="zone-name">Race-Day Loop Effort</span><span class="zone-pace">6:43–7:27/km</span></div>
+<div class="zone-row z-tempo"><span class="zone-label">Tempo</span><span class="zone-name">Threshold (maintenance only)</span><span class="zone-pace">4:15–4:30/km</span></div>
+</div>
+
+<!-- WEEKLY STRUCTURE -->
+<div class="week-structure">
+<h2>Typical Weekly Structure</h2>
+<div class="day-grid">
+  <div class="day-cell rest"><div class="day-name">Mon</div><div class="day-activity">Rest / Sauna</div></div>
+  <div class="day-cell run"><div class="day-name">Tue</div><div class="day-activity">Easy + Strides</div></div>
+  <div class="day-cell gym"><div class="day-name">Wed</div><div class="day-activity">Lower Body + Easy PM</div></div>
+  <div class="day-cell run"><div class="day-name">Thu</div><div class="day-activity">Steady / Doubles</div></div>
+  <div class="day-cell gym"><div class="day-name">Fri</div><div class="day-activity">Upper Body + Easy PM</div></div>
+  <div class="day-cell long"><div class="day-name">Sat</div><div class="day-activity">Long / Loops</div></div>
+  <div class="day-cell long"><div class="day-name">Sun</div><div class="day-activity">Back-to-Back</div></div>
+</div>
+</div>
+
+<!-- KEY PRINCIPLES -->
+<div class="info-section">
+<h2>Training Philosophy</h2>
+<div class="info-grid">
+  <div class="info-card"><h3>🔄 Repetition Over Speed</h3><p>You're not training to run fast. You're training to run the same easy effort 24+ times without breaking down. Most sessions are at or slower than marathon pace.</p></div>
+  <div class="info-card"><h3>⏱️ Time on Feet > Distance</h3><p>Weekly hours matter more than weekly km. A 3-hour easy run builds more relevant fitness than a fast 15km tempo. Long slow efforts build durability.</p></div>
+  <div class="info-card"><h3>🔁 Start–Stop–Restart</h3><p>The hardest part is restarting after rest. Loop sessions practise the rhythm: run, stop, eat, reset, go again. Train the transitions.</p></div>
+  <div class="info-card"><h3>🍽️ Fuel Under Fatigue</h3><p>Practise eating 200–300 cal/hr during long sessions. Your stomach needs training as much as your legs. Race day is not the time to experiment.</p></div>
+  <div class="info-card"><h3>🌙 Night Running</h3><p>Hours 14–20 will be in the dark. The overnight sim teaches you to function when tired, cold, and wanting to sleep. It's a mental crucible.</p></div>
+  <div class="info-card"><h3>🧠 Stay Small</h3><p>Never think beyond the next loop. The monotony is the challenge. Train patience by running loops, treadmill sessions, and long efforts without music.</p></div>
+</div>
+</div>
+
+<!-- SIMULATIONS -->
+<div class="sim-section">
+<h2>🎯 Race Simulations</h2>
+<div class="sim-grid">
+  <div class="sim-card">
+    <h3>Sim 1: Overnight (Week 5)</h3>
+    <p><strong>10:00 PM → 6:00 AM (8 hours) — Sat 9 Aug</strong></p>
+    <p>Run 6.7km loops on the hour, every hour, for 8 consecutive laps. Use a local park loop or out-and-back that's roughly the distance.</p>
+    <ul>
+      <li>Practise headlamp running, night clothing, and cold management</li>
+      <li>Fuel every single loop — test your race-day foods</li>
+      <li>Practise transitions: timer, eat, change layers, sit briefly, get back up</li>
+      <li>No music — embrace the monotony and darkness</li>
+      <li>Target 45–50 min per loop with 10–15 min rest</li>
+      <li>Note: The mental battle between 2–5 AM is the point</li>
+    </ul>
+  </div>
+  <div class="sim-card">
+    <h3>Sim 2: Daytime Volume (Week 6)</h3>
+    <p><strong>7:00 AM → 7:00 PM (12 hours) — Sat 16 Aug</strong></p>
+    <p>Run 6.7km loops on the hour for 12 consecutive laps. This is your peak training effort — a full half-race simulation of sustained daytime running.</p>
+    <ul>
+      <li>Practise the start-of-race rhythm (fresh legs, building fatigue)</li>
+      <li>Test all food: gels, bars, sandwiches, rice, soup — rotate hourly</li>
+      <li>Practise gear changes, sunscreen, hat swaps, sock changes</li>
+      <li>Monitor how your body responds to 80km of repetitive effort</li>
+      <li>Keep pace honest: 45–50 min loops, no faster</li>
+      <li>Last 2 laps will be in fading light — test headlamp transition</li>
+      <li>Goal: finish feeling tired but confident you could keep going</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- PHASE 1 -->
+<div class="phase">
+<div class="phase-header"><h2>Phase 1: Recovery + Rebuild</h2><span class="phase-tag tag-recover">Weeks 1–2</span></div>
+
+<div class="week">
+<div class="week-header"><span class="week-title">Week 1 — WHW Recovery (6–12 Jul)</span><span class="week-vol recovery">40–50km</span></div>
+<div class="week-focus">Priority: absorb the WHW effort. Easy movement, no intensity. Rebuild gently.</div>
+<div class="sessions">
+  <div class="session rest"><div class="day">Monday</div><div class="type">Rest</div><div class="detail">Full rest. Sauna + cold plunge. Elevate legs.</div></div>
+  <div class="session easy"><div class="day">Tuesday</div><div class="type">Easy Shakeout</div><div class="detail"><strong>6km</strong> very easy. Walk breaks fine. Just move.</div></div>
+  <div class="session gym"><div class="day">Wednesday</div><div class="type">Light Gym + Walk</div><div class="detail">Bodyweight / light. 30-min walk PM.</div></div>
+  <div class="session easy"><div class="day">Thursday</div><div class="type">Easy Run</div><div class="detail"><strong>8km</strong> @ 5:40–6:00/km. Flat. No effort.</div></div>
+  <div class="session easy"><div class="day">Friday</div><div class="type">Easy Run</div><div class="detail"><strong>8km</strong> @ 5:30–5:50/km + 6×100m strides at the end.</div></div>
+  <div class="session easy"><div class="day">Saturday</div><div class="type">Easy Long</div><div class="detail"><strong>14km</strong> @ 5:30–5:50/km. All conversational. No pace targets.</div></div>
+  <div class="session rest"><div class="day">Sunday</div><div class="type">Rest / Walk</div><div class="detail">60-min walk or full rest. Sauna + cold plunge.</div></div>
+</div>
+</div>
+
+<div class="week">
+<div class="week-header"><span class="week-title">Week 2 — Transition (13–19 Jul)</span><span class="week-vol recovery">60–65km</span></div>
+<div class="week-focus">Rebuild volume. Introduce easy doubles. Start thinking about loop rhythm.</div>
+<div class="sessions">
+  <div class="session rest"><div class="day">Monday</div><div class="type">Rest</div><div class="detail">Sauna + cold plunge. Full rest.</div></div>
+  <div class="session easy"><div class="day">Tuesday</div><div class="type">Easy AM + PM</div><div class="detail">AM: <strong>8km</strong> easy. PM: <strong>5km</strong> very easy (first double).</div></div>
+  <div class="session gym"><div class="day">Wednesday</div><div class="type">Lower Body Gym + Easy Run</div><div class="detail">Lower body session. PM: <strong>6km</strong> easy.</div></div>
+  <div class="session steady"><div class="day">Thursday</div><div class="type">Steady Run</div><div class="detail"><strong>12km</strong> @ 5:10–5:30/km. Controlled, comfortable effort.</div></div>
+  <div class="session gym"><div class="day">Friday</div><div class="type">Upper Body Gym + Easy Run</div><div class="detail">Upper body session. PM: <strong>6km</strong> easy.</div></div>
+  <div class="session long"><div class="day">Saturday</div><div class="type">Long Run</div><div class="detail"><strong>20km</strong> @ 5:20–5:40/km. All aerobic. Practise fueling every 30 min.</div></div>
+  <div class="session easy"><div class="day">Sunday</div><div class="type">Back-to-Back Easy</div><div class="detail"><strong>10km</strong> easy on tired legs from Saturday. Purpose: learn to restart.</div></div>
+</div>
+</div>
+</div>
+
+<!-- PHASE 2 -->
+<div class="phase">
+<div class="phase-header"><h2>Phase 2: Build</h2><span class="phase-tag tag-build">Weeks 3–4</span></div>
+
+<div class="week">
+<div class="week-header"><span class="week-title">Week 3 (20–26 Jul)</span><span class="week-vol">75–80km</span></div>
+<div class="week-focus">Introduce loop sessions. Build back-to-back volume. Doubles twice this week.</div>
+<div class="sessions">
+  <div class="session rest"><div class="day">Monday</div><div class="type">Rest</div><div class="detail">Sauna + cold plunge.</div></div>
+  <div class="session double"><div class="day">Tuesday</div><div class="type">Double Day</div><div class="detail">AM: <strong>10km</strong> steady @ 5:15/km. PM: <strong>6km</strong> very easy.</div></div>
+  <div class="session gym"><div class="day">Wednesday</div><div class="type">Lower Body Gym + Easy Run</div><div class="detail">Lower body session. PM: <strong>6km</strong> easy.</div></div>
+  <div class="session double"><div class="day">Thursday</div><div class="type">Double Day</div><div class="detail">AM: <strong>10km</strong> easy. PM: <strong>6km</strong> easy with 8×150m strides.</div></div>
+  <div class="session gym"><div class="day">Friday</div><div class="type">Upper Body Gym + Easy Run</div><div class="detail">Upper body session. PM: <strong>5km</strong> easy.</div></div>
+  <div class="session loop"><div class="day">Saturday</div><div class="type">Loop Session (3 laps)</div><div class="detail"><strong>3×6.7km on the hour.</strong> Run each in 45–50 min. Practise eating + sitting in rest window. Total: ~20km.</div></div>
+  <div class="session back2back"><div class="day">Sunday</div><div class="type">Long Easy</div><div class="detail"><strong>18km</strong> @ 5:30–5:50/km on tired legs. All Z1–Z2. Focus: comfort while fatigued.</div></div>
+</div>
+</div>
+
+<div class="week">
+<div class="week-header"><span class="week-title">Week 4 (27 Jul–2 Aug)</span><span class="week-vol">85–95km</span></div>
+<div class="week-focus">Peak build week. Biggest back-to-back weekend. Extend loop session. Evening run for dark-running confidence.</div>
+<div class="sessions">
+  <div class="session rest"><div class="day">Monday</div><div class="type">Rest</div><div class="detail">Sauna + cold plunge.</div></div>
+  <div class="session double"><div class="day">Tuesday</div><div class="type">Double Day</div><div class="detail">AM: <strong>12km</strong> steady @ 5:10–5:20/km. PM: <strong>6km</strong> easy.</div></div>
+  <div class="session gym"><div class="day">Wednesday</div><div class="type">Lower Body Gym + Easy Run</div><div class="detail">Lower body session. PM: <strong>6km</strong> easy.</div></div>
+  <div class="session steady"><div class="day">Thursday</div><div class="type">Evening Steady</div><div class="detail"><strong>14km</strong> @ 5:10–5:25/km. Start at 8:30 PM — run into darkness. Headlamp for last 30 min.</div></div>
+  <div class="session gym"><div class="day">Friday</div><div class="type">Upper Body Gym + Easy Run</div><div class="detail">Upper body session. PM: <strong>5km</strong> very easy (pre-long weekend).</div></div>
+  <div class="session loop"><div class="day">Saturday</div><div class="type">Loop Session (6 laps)</div><div class="detail"><strong>6×6.7km on the hour.</strong> 45–50 min per loop. Full fueling practice — eat 200–250 cal between each loop. Total: ~40km over 6 hours.</div></div>
+  <div class="session back2back"><div class="day">Sunday</div><div class="type">Back-to-Back Long</div><div class="detail"><strong>16km</strong> easy @ 5:40–6:00/km. Run on heavy legs. Purpose: normalise fatigue running.</div></div>
+</div>
+</div>
+</div>
+
+<!-- PHASE 3 -->
+<div class="phase">
+<div class="phase-header"><h2>Phase 3: Race-Specific</h2><span class="phase-tag tag-specific">Weeks 5–6</span></div>
+
+<div class="week">
+<div class="week-header"><span class="week-title">Week 5 — Overnight Simulation (3–9 Aug)</span><span class="week-vol">75–85km</span></div>
+<div class="week-focus">The big week. Overnight sim on Saturday night. Reduced volume early in week to prepare.</div>
+<div class="sessions">
+  <div class="session rest"><div class="day">Monday</div><div class="type">Rest</div><div class="detail">Sauna + cold plunge.</div></div>
+  <div class="session easy"><div class="day">Tuesday</div><div class="type">Easy Run</div><div class="detail"><strong>10km</strong> @ 5:30–5:50/km. Keep it gentle — big weekend ahead.</div></div>
+  <div class="session gym"><div class="day">Wednesday</div><div class="type">Lower Body Gym + Easy Run</div><div class="detail">Lower body (moderate). PM: <strong>6km</strong> easy.</div></div>
+  <div class="session easy"><div class="day">Thursday</div><div class="type">Easy + Strides</div><div class="detail"><strong>8km</strong> easy with 8×100m strides. Stay fresh for Saturday.</div></div>
+  <div class="session rest"><div class="day">Friday</div><div class="type">Rest / Prep</div><div class="detail">Full rest. Prep kit, food, headlamp, route. Sleep in the afternoon if possible.</div></div>
+  <div class="session sim"><div class="day">Saturday Night</div><div class="type">🌙 SIM 1: Overnight</div><div class="detail"><strong>8×6.7km loops, 10PM–6AM.</strong> On the hour every hour. Full race nutrition. Headlamp. No music. Embrace the dark hours. (~54km)</div></div>
+  <div class="session rest"><div class="day">Sunday</div><div class="type">Recovery</div><div class="detail">Sleep. Eat. Walk only. Sauna + cold plunge. Celebrate surviving.</div></div>
+</div>
+</div>
+
+<div class="week">
+<div class="week-header"><span class="week-title">Week 6 — Daytime Simulation (10–16 Aug)</span><span class="week-vol">90–100km</span></div>
+<div class="week-focus">Daytime volume sim on Saturday. This is the confidence-builder. You'll know you're ready.</div>
+<div class="sessions">
+  <div class="session rest"><div class="day">Monday</div><div class="type">Rest</div><div class="detail">Sauna + cold plunge. Still recovering from overnight sim.</div></div>
+  <div class="session easy"><div class="day">Tuesday</div><div class="type">Easy Run</div><div class="detail"><strong>8km</strong> very easy. Assess how legs feel post-sim.</div></div>
+  <div class="session gym"><div class="day">Wednesday</div><div class="type">Lower Body Gym + Easy Run</div><div class="detail">Lower body (light). PM: <strong>8km</strong> easy.</div></div>
+  <div class="session steady"><div class="day">Thursday</div><div class="type">Steady Run</div><div class="detail"><strong>12km</strong> @ 5:15–5:30/km. Controlled. Feeling good = green light for Saturday.</div></div>
+  <div class="session rest"><div class="day">Friday</div><div class="type">Rest / Prep</div><div class="detail">Full rest. Prep all race-day food, kit, and set up aid station at loop start.</div></div>
+  <div class="session sim"><div class="day">Saturday</div><div class="type">☀️ SIM 2: Daytime Volume</div><div class="detail"><strong>12×6.7km loops, 7AM–7PM.</strong> On the hour every hour. Full race execution. All food tested. Gear changes. Last laps into dusk. Total: ~80km over 12 hours.</div></div>
+  <div class="session rest"><div class="day">Sunday</div><div class="type">Recovery</div><div class="detail">Full rest. Light walk. Eat well. You've done the work.</div></div>
+</div>
+</div>
+</div>
+
+<!-- PHASE 4 -->
+<div class="phase">
+<div class="phase-header"><h2>Phase 4: Taper</h2><span class="phase-tag tag-taper">Weeks 7–8</span></div>
+
+<div class="week">
+<div class="week-header"><span class="week-title">Week 7 — Absorb (17–23 Aug)</span><span class="week-vol recovery">45–50km</span></div>
+<div class="week-focus">Let the sims settle. Reduce volume. Keep moving. Stay sharp but don't dig any holes.</div>
+<div class="sessions">
+  <div class="session rest"><div class="day">Monday</div><div class="type">Rest</div><div class="detail">Full rest. Sauna + cold plunge.</div></div>
+  <div class="session easy"><div class="day">Tuesday</div><div class="type">Easy Run</div><div class="detail"><strong>10km</strong> easy @ 5:30–5:50/km. Shake out the sim fatigue.</div></div>
+  <div class="session gym"><div class="day">Wednesday</div><div class="type">Lower Body Gym (light) + Easy Run</div><div class="detail">Lower body (maintenance). PM: <strong>6km</strong> easy.</div></div>
+  <div class="session easy"><div class="day">Thursday</div><div class="type">Easy + Strides</div><div class="detail"><strong>8km</strong> easy with 6×100m strides. Keep legs turning over.</div></div>
+  <div class="session gym"><div class="day">Friday</div><div class="type">Upper Body Gym (light)</div><div class="detail">Upper body (maintenance). No PM run.</div></div>
+  <div class="session loop"><div class="day">Saturday</div><div class="type">Loop Rehearsal (3 laps)</div><div class="detail"><strong>3×6.7km on the hour.</strong> Race effort, race food, race kit. Nail the routine. Total: ~20km.</div></div>
+  <div class="session rest"><div class="day">Sunday</div><div class="type">Rest / Walk</div><div class="detail">Light 30-min walk. Full rest otherwise. Eat well.</div></div>
+</div>
+</div>
+
+<div class="week">
+<div class="week-header"><span class="week-title">Week 8 — Race Week (24–29 Aug)</span><span class="week-vol recovery">25–30km</span></div>
+<div class="week-focus">Arrive fresh, confident, and calm. Trust the training. Nothing new.</div>
+<div class="sessions">
+  <div class="session rest"><div class="day">Monday</div><div class="type">Rest</div><div class="detail">Full rest. Legs up. Sauna.</div></div>
+  <div class="session easy"><div class="day">Tuesday</div><div class="type">Easy + Strides</div><div class="detail"><strong>8km</strong> easy @ 5:30–5:50/km with 6×100m strides.</div></div>
+  <div class="session easy"><div class="day">Wednesday</div><div class="type">Easy Run</div><div class="detail"><strong>6km</strong> easy. Stay loose.</div></div>
+  <div class="session loop"><div class="day">Thursday</div><div class="type">Loop Rehearsal</div><div class="detail"><strong>2×6.7km</strong> at race-day effort (45–50 min). Practise exact pre-race routine, food, kit.</div></div>
+  <div class="session rest"><div class="day">Friday</div><div class="type">Rest / Travel</div><div class="detail">Full rest. Pack kit. Travel to Frylands Wood if needed. Early night.</div></div>
+  <div class="session easy"><div class="day">Saturday</div><div class="type">Shakeout</div><div class="detail"><strong>3km</strong> very easy + 4×100m strides. Set up camp. Prep aid station. Eat well. Relax.</div></div>
+  <div class="session sim"><div class="day">Sunday</div><div class="type">🏁 RACE DAY</div><div class="detail"><strong>London Backyard Ultra — 24+ Hours starts here.</strong></div></div>
+</div>
+</div>
+</div>
+
+<!-- RACE DAY STRATEGY -->
+<div class="race-day">
+<h2>🏁 Race Day Strategy</h2>
+<div class="strategy-grid">
+  <div class="strategy-card">
+    <h3>Pacing</h3>
+    <ul>
+      <li>Target: 45–50 min per loop (6:43–7:27/km)</li>
+      <li>Do NOT run faster than 45 min in the first 12 laps</li>
+      <li>Let pace drift to 50 min in hours 18–24 — still well within the hour</li>
+      <li>Walk uphills from lap 1 — save running muscles for flat/downhill</li>
+      <li>Same pace, same effort, every single loop</li>
+    </ul>
+  </div>
+  <div class="strategy-card">
+    <h3>Transitions (10–15 min window)</h3>
+    <ul>
+      <li>Arrive → Sit (30 sec only) → Eat → Drink → Assess feet/kit</li>
+      <li>Change socks every 6–8 hours (carry 3 pairs pre-staged)</li>
+      <li>Layer changes at nightfall and dawn</li>
+      <li>Keep area tidy — chaos costs time and mental energy</li>
+      <li>Set phone timer for 3 min before each hour to get moving</li>
+    </ul>
+  </div>
+  <div class="strategy-card">
+    <h3>Night Strategy (Laps 14–20 approx)</h3>
+    <ul>
+      <li>Headlamp: fully charged + spare. Red-light mode preserves night vision</li>
+      <li>Extra layer: long sleeve + gilet at minimum</li>
+      <li>Warm food: soup, noodles, hot chocolate during night transitions</li>
+      <li>Caffeine: deploy from 2AM onwards (max 200mg every 3 hours)</li>
+      <li>Accept that 2–5 AM will be hard. It passes.</li>
+    </ul>
+  </div>
+  <div class="strategy-card">
+    <h3>Mental Framework</h3>
+    <ul>
+      <li>Only ever think about THIS loop. Never count what's ahead.</li>
+      <li>Break into blocks: "Get to 12" → "Get to sunrise" → "Keep going"</li>
+      <li>Low moments always pass — never quit during a low</li>
+      <li>If doubting, commit to just starting the next loop</li>
+      <li>Stay emotionally neutral — highs and lows both drain energy</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- FUELING -->
+<div class="fueling">
+<h2>🍽️ Hourly Fueling Plan</h2>
+<table class="fuel-table">
+<tr><th>Phase</th><th>Hours</th><th>Calories/hr</th><th>Food Examples</th><th>Notes</th></tr>
+<tr><td>Early</td><td>1–6</td><td>200–250</td><td>Gels, banana, rice cakes, energy bars</td><td>Simple, easy to digest. Establish rhythm early.</td></tr>
+<tr><td>Middle</td><td>7–14</td><td>250–300</td><td>Sandwiches, wraps, rice + salt, flapjack, crisps</td><td>Introduce real food. Alternate sweet/salty.</td></tr>
+<tr><td>Night</td><td>15–20</td><td>250–300</td><td>Soup, noodles, mashed potato, hot chocolate, gels</td><td>Warm food helps mentally + physically. Caffeine from 2AM.</td></tr>
+<tr><td>Dawn Push</td><td>21–24+</td><td>200–250</td><td>Whatever works: gels, cola, toast, porridge</td><td>Gut may be fragile. Liquid cals if solids fail.</td></tr>
+</table>
+<p style="font-size: 0.75rem; color: #666; margin-top: 12px; padding-left: 16px;">Target: ~250 cal + 500–750ml fluid + 500–700mg sodium per hour. Test everything in training sims. Never try new food on race day.</p>
+</div>
+
+<!-- STRENGTH TRAINING -->
+<div class="info-section">
+<h2>🏋️ Gym Sessions (2x/week)</h2>
+<div class="info-grid">
+  <div class="info-card">
+    <h3>Split</h3>
+    <ul>
+      <li>Wednesday: Lower Body</li>
+      <li>Friday: Upper Body</li>
+      <li>Always gym before the easy PM run, never before long runs</li>
+    </ul>
+  </div>
+  <div class="info-card">
+    <h3>Periodisation</h3>
+    <ul>
+      <li>Weeks 1–5: full intensity, progressive overload</li>
+      <li>Weeks 6–7: reduce to maintenance (lighter loads)</li>
+      <li>Week 8: drop gym entirely — just mobility and stretching</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- KIT LIST -->
+<div class="info-section">
+<h2>🎒 Race Day Kit Checklist</h2>
+<div class="info-grid">
+  <div class="info-card">
+    <h3>Running Kit</h3>
+    <ul>
+      <li>Trail shoes (broken in — test in sims)</li>
+      <li>3× pairs running socks (change every 6–8h)</li>
+      <li>Shorts + t-shirt (day)</li>
+      <li>Long sleeve + tights (night)</li>
+      <li>Gilet / windproof (night)</li>
+      <li>Cap (day) + beanie (night)</li>
+      <li>Gloves (night / early morning)</li>
+    </ul>
+  </div>
+  <div class="info-card">
+    <h3>Equipment</h3>
+    <ul>
+      <li>Headlamp + spare headlamp</li>
+      <li>Phone (race timing)</li>
+      <li>Watch with lap timer</li>
+      <li>Chair at aid station</li>
+      <li>Small table for food layout</li>
+      <li>Blanket for sitting between laps</li>
+      <li>Vaseline / anti-chafe</li>
+    </ul>
+  </div>
+  <div class="info-card">
+    <h3>Nutrition Station</h3>
+    <ul>
+      <li>Cooler box with pre-portioned food bags (one per lap)</li>
+      <li>Thermos × 2 (hot water for soup/noodles)</li>
+      <li>Caffeine gels / pills (deploy from 2AM)</li>
+      <li>Electrolyte mix + water bottles</li>
+      <li>Cola (flat — late hours emergency sugar)</li>
+      <li>Paracetamol / ibuprofen (emergency only)</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- COMPLEMENTARY -->
+<div class="info-section">
+<h2>Recovery & Complementary Work</h2>
+<div class="info-grid">
+  <div class="info-card"><h3>🧊 Sauna + Cold Plunge</h3><p>2–3×/week on rest days or post-run. Aids recovery and builds heat/cold tolerance — both relevant for 24hr racing.</p></div>
+  <div class="info-card"><h3>😴 Sleep</h3><p>Prioritise 8+ hours in the build weeks. Bank sleep before race week. The overnight sim will disrupt one night — recover fully before the daytime sim.</p></div>
+  <div class="info-card"><h3>🦶 Foot Care</h3><p>Test socks and shoes in all sims. Apply anti-chafe liberally. Know your blister spots. Pre-tape if needed. Carry blister kit on race day.</p></div>
+</div>
+</div>
+
+</div>
+</body>
+</html>
