@@ -3,10 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Backyard Ultra">
+<meta name="theme-color" content="#0f0f0f">
 <title>London Backyard Ultra 2026 — 24hr+ Training Plan</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f0f0f; color: #e8e8e8; padding: 40px 20px; line-height: 1.6; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f0f0f; color: #e8e8e8; padding: 40px 20px; line-height: 1.6; -webkit-text-size-adjust: 100%; padding-top: env(safe-area-inset-top, 40px); }
 .container { max-width: 1100px; margin: 0 auto; }
 h1 { font-size: 2.4rem; font-weight: 700; margin-bottom: 8px; color: #fff; }
 .subtitle { font-size: 1.1rem; color: #888; margin-bottom: 40px; }
@@ -101,11 +105,35 @@ h1 { font-size: 2.4rem; font-weight: 700; margin-bottom: 8px; color: #fff; }
 .sim-card p { font-size: 0.8rem; color: #aaa; line-height: 1.6; margin-bottom: 8px; }
 .sim-card ul { font-size: 0.8rem; color: #aaa; line-height: 1.8; padding-left: 16px; }
 
+@media (max-width: 900px) {
+  .sessions { grid-template-columns: 1fr 1fr; }
+  .day-grid { grid-template-columns: repeat(7, 1fr); }
+  .strategy-grid { grid-template-columns: 1fr; }
+  .sim-grid { grid-template-columns: 1fr; }
+}
+
 @media (max-width: 768px) {
-  .day-grid { grid-template-columns: repeat(4, 1fr); }
-  .sessions { grid-template-columns: 1fr; }
+  body { padding: 20px 16px; }
   h1 { font-size: 1.8rem; }
-  .meta-grid { grid-template-columns: repeat(2, 1fr); }
+  .subtitle { font-size: 0.95rem; margin-bottom: 30px; }
+  .meta-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .meta-card { padding: 14px; }
+  .meta-card .value { font-size: 1.1rem; }
+  .day-grid { grid-template-columns: repeat(7, 1fr); gap: 4px; }
+  .day-cell { padding: 10px 4px; }
+  .day-cell .day-name { font-size: 0.6rem; }
+  .day-cell .day-activity { font-size: 0.6rem; }
+  .sessions { grid-template-columns: 1fr; }
+  .info-grid { grid-template-columns: 1fr; }
+  .week { padding: 18px 16px; }
+  .week-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .phase-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .race-day { padding: 20px 16px; }
+  .fuel-table { font-size: 0.75rem; }
+  .fuel-table th, .fuel-table td { padding: 8px 10px; }
+  .sim-section { padding: 20px 16px; }
+  .strategy-grid { grid-template-columns: 1fr; }
+  .sim-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
